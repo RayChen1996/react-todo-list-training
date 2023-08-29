@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
 const LoginView = () => {
     const [isSuccess, setIsSuccess] = useState(false);
-    const [username, setUsername] = useState('ray.10315332@gmail.com');
+    const [username, setUsername] = useState('');//ray.10315332@gmail.com
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const ClickLoginEvt = async() =>{
@@ -37,6 +37,7 @@ const LoginView = () => {
         navigate('/register');
     }
     const handleUsernameChange = (event) => {
+        
         setUsername(event.target.value);
     };
     

@@ -40,6 +40,11 @@ function NavBar() {
             });
 
     } catch (err) {
+
+
+      setTimeout(()=>{
+        navigate('/login');
+      },500)
       console.error("Error sign out :", err);
     }
 
@@ -58,7 +63,7 @@ function NavBar() {
  
         </ul>
         <span className="navbar-text  ">
-          <span>{user.nickname} 的待辦</span>
+          <span>{user?.nickname} 的待辦</span>
           <a className="btn btn-primary text-white" onClick={Logout}>登出</a>
         </span>
       </div>

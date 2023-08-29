@@ -27,9 +27,18 @@ const RegisterView =  () => {
 
             setIsSuccess(result.data.status)
             if(result.data.status){ 
-
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'error',
+                    title: '成功註冊！',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    customClass: {
+                        title: 'custom-red-title' // 自定義 CSS 類名
+                      }
+                  })
                 setTimeout(()=>{
-                    navigate('/todo');
+                    navigate('/Login');
                 },500)
             }
         }catch(error){
@@ -38,7 +47,7 @@ const RegisterView =  () => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'error',
-                    title: 'Your work has been saved',
+                    title: '用戶已存在',
                     showConfirmButton: false,
                     timer: 1500,
                     customClass: {
@@ -88,8 +97,8 @@ const RegisterView =  () => {
                             </div>
 
                             <div className="mb-3">
-                            <label htmlFor="account" className="form-label">您的暱稱</label>
-                            <input type="text" className="form-control" id="account" placeholder="輸入您的暱稱" value={nickName}
+                            <label htmlFor="nickname" className="form-label">您的暱稱</label>
+                            <input type="text" className="form-control" id="nickname" placeholder="輸入您的暱稱" value={nickName}
                             onChange={handleNicknameChange} />
                             </div>
 
@@ -101,8 +110,8 @@ const RegisterView =  () => {
                             </div>  
 
                             <div className="mb-3">
-                            <label htmlFor="pwd" className="form-label">再次輸入密碼</label>
-                            <input type="password" className="form-control" id="pwd" placeholder="再次輸入密碼"  value={confirmPassword}
+                            <label htmlFor="confirmpwd" className="form-label">再次輸入密碼</label>
+                            <input type="password" className="form-control" id="confirmpwd" placeholder="再次輸入密碼"  value={confirmPassword}
                             onChange={handleConfirmPasswordChange} />
                             </div>  
 
