@@ -9,39 +9,40 @@ import {HashRouter,Route,Routes} from "react-router-dom";
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
+import { API_BASE_URL } from './config.js'; 
+
 function NavBar() {
-  let user = JSON.parse(localStorage.getItem("token")) 
+  let user = JSON.parse(localStorage.getItem("token"))
+ 
   const navigate = useNavigate();
   const Logout = async() => {
-
-
-
     try {
       let token = JSON.parse(localStorage.getItem("token"));
       axios.defaults.headers.common['Authorization'] = token.token;
        
-      const result = await axios.post(`/api/users/sign_out`, {
+      const result = await axios.post(API_BASE_URL+`users/sign_out`, {
       });
-            Swal.fire({
-                icon: 'success',
-                title: `登出成功`,
-                text: `${result?.data?.message}`,
-                showConfirmButton: true,
-                confirmButtonColor: '#6c5ce7',
-                confirmButtonText: '確認',
-            }).then((result) => {
-                 
-           
-                  setTimeout(()=>{
-                    navigate('/login');
-                  },500)
 
-
-            });
+      console.log(result)
+      if(result.data.status){
+        localStorage.removeItem("token")
+      }
+          
+     
+      Swal.fire({
+        icon: 'success',
+        title: `登出成功`,
+        text: `${result?.data?.message}`,
+        showConfirmButton: true,
+        confirmButtonColor: '#6c5ce7',
+        confirmButtonText: '確認',
+    }).then((result) => {
+          setTimeout(()=>{
+            navigate('/login');
+          },500)
+    });
 
     } catch (err) {
-
-
       setTimeout(()=>{
         navigate('/login');
       },500)
@@ -62,10 +63,15 @@ function NavBar() {
           
  
         </ul>
-        <span className="navbar-text  ">
-          <span>{user?.nickname} 的待辦</span>
-          <a className="btn btn-primary text-white" onClick={Logout}>登出</a>
-        </span>
+        {
+          user !== null && (
+            <span className="navbar-text">
+              <span>{user?.nickname} 的待辦</span>
+              <a className="btn btn-primary text-white" onClick={Logout}>登出</a>
+            </span>
+          )
+        }
+     
       </div>
     </div>
   </nav>
@@ -79,7 +85,7 @@ function App() {
     <div className="container">
       <NavBar />
       <Routes>
-        <Route path="/" element={<Todolist />} />
+        <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/todo" element={<Todolist />} />

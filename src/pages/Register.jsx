@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
-
+import { API_BASE_URL } from '../config.js'; 
 const RegisterView =  () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [username, setUsername] = useState('');
@@ -18,7 +18,7 @@ const RegisterView =  () => {
       
 
         try{
-            const result = await axios.post('/api/users/sign_up', {
+            const result = await axios.post(`${API_BASE_URL}users/sign_up`, {
                 "email":username,
                 "password": password,
                 "nickname": nickName
@@ -29,7 +29,7 @@ const RegisterView =  () => {
             if(result.data.status){ 
                 Swal.fire({
                     position: 'top-end',
-                    icon: 'error',
+                    icon: 'success',
                     title: '成功註冊！',
                     showConfirmButton: false,
                     timer: 1500,

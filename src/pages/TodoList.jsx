@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config.js'; 
 const TodoView = () => {
     // const [isSuccess, setIsSuccess] = useState(false);
     const [username, setUsername] = useState('');
@@ -31,7 +32,7 @@ const TodoView = () => {
         axios.defaults.headers.common['Authorization'] = token.token;
         
         // 執行 PATCH 請求，將編輯後的內容提交到後端
-        const result = await axios.put(`/api/todos/${id}`, {
+        const result = await axios.put(`${API_BASE_URL}todos/${id}`, {
           content: editedContent
         });
  
@@ -53,7 +54,7 @@ const TodoView = () => {
             let token = JSON.parse(localStorage.getItem("token")) 
      
             axios.defaults.headers.common['Authorization'] = token.token;
-            const result = await axios.post('/api/todos', {
+            const result = await axios.post(API_BASE_URL+'api/todos', {
               "content": `${TodoText}`
             });
             
@@ -74,7 +75,7 @@ const TodoView = () => {
         axios.defaults.headers.common['Authorization'] = token.token;
         
         // 執行 PATCH 請求，將狀態更新提交到後端
-        const result = await axios.patch(`/api/todos/${id}/toggle`, {
+        const result = await axios.patch(API_BASE_URL+`todos/${id}/toggle`, {
           status: !status
         });
  
@@ -105,7 +106,7 @@ const TodoView = () => {
       
 
            fillterItems.forEach(async(item,idx)=>{
-            const result2 = await axios.delete('/api/todos/'+item.id, {
+            const result2 = await axios.delete(API_BASE_URL+'todos/'+item.id, {
       
             });
             if(result2.data.status){
@@ -150,7 +151,7 @@ const TodoView = () => {
             let token = JSON.parse(localStorage.getItem("token")) 
   
             axios.defaults.headers.common['Authorization'] = token.token;
-            const result2 = await axios.delete('/api/todos/'+id, {
+            const result2 = await axios.delete(API_BASE_URL+'todos/'+id, {
       
             });
        
@@ -180,7 +181,7 @@ const TodoView = () => {
               let token = JSON.parse(localStorage.getItem("token")) 
            
               axios.defaults.headers.common['Authorization'] = token.token;
-              const result = await axios.post('/api/todos', {
+              const result = await axios.post(`${API_BASE_URL}todos`, {
                 "content": `${TodoText}`
               });
               
@@ -222,7 +223,7 @@ const TodoView = () => {
           let token = JSON.parse(localStorage.getItem("token")) 
       
           axios.defaults.headers.common['Authorization'] = token.token;
-          const result = await axios.get('/api/todos', {
+          const result = await axios.get(`${API_BASE_URL}todos`, {
           
           });
           

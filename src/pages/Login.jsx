@@ -2,6 +2,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useContext, useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config.js'; 
 const LoginView = () => {
     const [isSuccess, setIsSuccess] = useState(false);
     const [username, setUsername] = useState('');//ray.10315332@gmail.com
@@ -10,7 +11,7 @@ const LoginView = () => {
     const ClickLoginEvt = async() =>{
  
         
-        const result = await axios.post('/api/users/sign_in', {
+        const result = await axios.post(`${API_BASE_URL}users/sign_in`, {
             "email": username,
             "password": password
           
