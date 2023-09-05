@@ -62,8 +62,8 @@ const LoginView = () => {
         onChange={handlePasswordChange} />
         </div>  
         <div className="mb-3 d-flex justify-content-around">
-        <button type="submit" className="btn btn-primary" onClick={ClickLoginEvt}  >登入</button>
-        <button type="submit" className="btn btn-outline-primary" onClick={GotoReg}  >註冊</button>
+        <button type="button" className="btn btn-primary" onClick={ClickLoginEvt}  >登入</button>
+        <button type="button" className="btn btn-outline-primary" onClick={GotoReg}  >註冊</button>
         </div>
 
         </form>

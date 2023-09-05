@@ -54,7 +54,8 @@ const TodoView = () => {
             let token = JSON.parse(localStorage.getItem("token")) 
      
             axios.defaults.headers.common['Authorization'] = token.token;
-            const result = await axios.post(API_BASE_URL+'api/todos', {
+  
+            const result = await axios.post(API_BASE_URL+'todos', {
               "content": `${TodoText}`
             });
             

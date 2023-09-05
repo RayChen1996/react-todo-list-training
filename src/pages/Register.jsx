@@ -116,9 +116,9 @@ const RegisterView =  () => {
                             </div>  
 
                             <div className='d-flex justify-content-center gap-2'>
-                            <button type="submit" className="btn btn-primary" onClick={ClickRegEvt}  >註冊</button>
+                            <button type="button" className="btn btn-primary" onClick={ClickRegEvt}  >註冊</button>
 
-                            <button type="submit" className="btn btn-outline-primary" onClick={GotoLogin}  >登入</button>
+                            <button type="button" className="btn btn-outline-primary" onClick={GotoLogin}  >登入</button>
 
                             </div>
 
